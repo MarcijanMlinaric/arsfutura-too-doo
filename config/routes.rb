@@ -1,3 +1,8 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  root controller: :lists, action: :create
+
+  resources :lists, param: :id
+
+  get '*path', to: 'lists#create', via: :all
+
 end
