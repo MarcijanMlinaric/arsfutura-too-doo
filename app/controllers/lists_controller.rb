@@ -1,4 +1,8 @@
 class ListsController < ApplicationController
+    def index
+        redirect_to :action => "create"
+    end
+    
     def show
         list = List.find_by(id: params[:id])
 
