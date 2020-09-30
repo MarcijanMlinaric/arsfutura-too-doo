@@ -6,7 +6,7 @@ class ListsController < ApplicationController
         if list == nil
             redirect_to :action => "create"
         else
-            render json: ListSerializer.new(list, options).serialized_json
+            @list = ListSerializer.new(list, options).serialized_json
         end
     end
 
@@ -14,7 +14,7 @@ class ListsController < ApplicationController
         list = List.new(title: 'Untitled')
 
         if list.save
-            redirect_to :action => "show", :id => list.id
+            redirect_to action: "show", id: list.id
         else
             render json: {error: airline.errors.messages}, status: 422
         end
