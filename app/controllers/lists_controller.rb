@@ -16,7 +16,7 @@ class ListsController < ApplicationController
         if list.save
             redirect_to action: "show", id: list.id
         else
-            render json: {error: airline.errors.messages}, status: 422
+            render json: {error: list.errors.messages}, status: 422
         end
     
     end    
@@ -27,7 +27,7 @@ class ListsController < ApplicationController
         if list.update(params.require(:list).permit(:title))
             render json: ListSerializer.new(list).serialized_json
         else
-            render json: {error: airline.errors.messages}, status: 422
+            render json: {error: list.errors.messages}, status: 422
         end
     end
 
