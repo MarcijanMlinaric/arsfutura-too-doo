@@ -1,10 +1,10 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
-import Title from './Title'
 import TitleChange from './TitleChange'
 import NewToDo from './NewToDo'
 import ToDo from './ToDo'
+import styles from '../../assets/stylesheets/styles.module.css'
 
 const List = (props) => {
     const [state, setState] = useState('')
@@ -16,20 +16,18 @@ const List = (props) => {
 
     }, [])
 
-    
+
 
     //f11b3550-ef86-4096-9df4-840fff142174
 
 
     const onNameChangeHandler = (e) => {
         e.preventDefault()
-        console.log(e.target.value)
+
         axios.patch(`/lists/${state.data.id}`, { "title": e.target.value })
     }
 
     const onNewTodoHandler = (e) => {
-
-        console.log(e.target.value)
         const newToDo = { "name": e.target.value, "checked": false, "list_id": state.data.id }
         axios.post(`/to_dos/`, newToDo)
             .then(resp => {
@@ -50,21 +48,31 @@ const List = (props) => {
     }
 
 
-
+    console.log(todos)
 
 
     return (
         <React.Fragment>
             {state.data ? (
-                <div>
-                    <button onClick={onButtonClickHandler}>New ToDo</button>
-                    <TitleChange title={state.data.attributes.title} onSubmit={onNameChangeHandler} />
-                    <NewToDo onSubmit={onNewTodoHandler} />
-                    <div>
-                        {todos.map((todo) => (
-                            <ToDo key={`ToDo-${todo.id}`} id={todo.id} name={todo.attributes.name} checked={todo.attributes.checked} onCheck={onCheckHandler} />
-                        ))}
-
+                <div className={styles.main}>
+                    <div className={styles.container}>
+                        <div className={styles.header}>
+                            <button className={styles.newListButton} onClick={onButtonClickHandler}>New List</button>
+                            <TitleChange title={state.data.attributes.title} onSubmit={onNameChangeHandler} />
+                        </div>
+                        <div className={styles.inputs}>
+                            <NewToDo onSubmit={onNewTodoHandler} />
+                        </div>
+                        <div className={styles.todos}>
+                            {todos.map((todo) => (
+                                <ToDo key={`ToDo-${todo.id}`} id={todo.id} name={todo.attributes.name} checked={todo.attributes.checked} onCheck={onCheckHandler} />
+                            ))}
+                        </div>
+                        <div className={styles.footer}>
+                            <hr className={styles.footerHr}/>
+                            <div className={styles.footerTitle}>Too Doo</div>
+                            <div className={styles.footerDesc}>Your to-dos have never been simpler.</div> 
+                        </div>
                     </div>
                 </div>
 

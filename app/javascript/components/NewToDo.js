@@ -1,5 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
+import styles from '../../assets/stylesheets/styles.module.css'
+
 
 const NewToDo = (props) => {
     const [todo, setTodo] = useState('')
@@ -25,9 +27,10 @@ const NewToDo = (props) => {
     }
 
     return (
-        <form onSubmit={props.onSubmit}>
-            <input onChange={onChange} value={todo} placeholder="Add a to-do" type="text" />
-            <button type="submit" disabled={disabled} onClick={onButtonClick}>Add to-do</button>
+        <form onSubmit={props.onSubmit} className={styles.newTodo}>
+            <button className={styles.newButton} type="submit" disabled={disabled} onClick={onButtonClick}>+</button>
+            <input className={styles.newInput} maxLength="50" onChange={onChange} value={todo} placeholder="Add a to-do" type="text" />
+           
         </form>
     )
 

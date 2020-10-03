@@ -1,5 +1,6 @@
 import React from 'react'
 import {useState} from 'react'
+import styles from '../../assets/stylesheets/styles.module.css'
 
 const ToDo = (props) => {
     const [checked, setChecked] = useState(props.checked)
@@ -11,9 +12,10 @@ const ToDo = (props) => {
     }
 
     return (
-        <div>
-            <p>{props.name}</p>
-            <input type="checkbox" checked={checked} id={props.id} onChange={onCheckHandler} />
+        <div className={styles.todo}>
+            <input className={styles.check} type="checkbox" checked={checked} id={props.id} onChange={onCheckHandler} />
+            <p className={styles.text}>{props.name}</p>
+            
         </div>
     )
 }
