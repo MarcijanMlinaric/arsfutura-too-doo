@@ -8,12 +8,16 @@ const TitleChange = (props) => {
     const [buttonText, setButtonText] = useState('Edit')
     const inputRef = useRef(null)
 
+    
     const onButtonClick = (e) => {
         e.preventDefault()
-        if(disabled) {
+        if (disabled) {
             setDisabled(false)
             setButtonText('Save')
-            inputRef.current.focus()
+            setTimeout(() => {
+                inputRef.current.focus()
+            }, 1);
+
         } else {
             setDisabled(true)
             setButtonText('Edit')

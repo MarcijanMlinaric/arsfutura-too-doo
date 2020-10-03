@@ -10,15 +10,12 @@ const List = (props) => {
     const [state, setState] = useState('')
     const [todos, setTodos] = useState('')
 
+    //Getting data
     useEffect(() => {
         setState(JSON.parse(props.list))
         setTodos(JSON.parse(props.list).included)
 
     }, [])
-
-
-
-    //f11b3550-ef86-4096-9df4-840fff142174
 
 
     const onNameChangeHandler = (e) => {
@@ -47,8 +44,6 @@ const List = (props) => {
         window.location.href = "http://localhost:3000"
     }
 
-
-    console.log(todos)
 
 
     return (
